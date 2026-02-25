@@ -210,6 +210,46 @@ input[type="file"] {
     color: white;
 }
 
+.feedback-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feedback-section p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.feedback-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.feedback-btn {
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    border: 2px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.feedback-btn.yes-btn:hover, .feedback-btn.yes-btn.active {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+.feedback-btn.no-btn:hover, .feedback-btn.no-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
 .chemistry-section p {
     margin-bottom: 1.5rem;
 }

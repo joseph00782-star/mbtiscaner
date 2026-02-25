@@ -46,4 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
     shareButton.addEventListener('click', () => {
         alert('인스타그램 스토리 공유 기능은 곧 업데이트될 예정입니다!');
     });
+
+    // 피드백 버튼 이벤트
+    const feedbackButtons = document.querySelectorAll('.feedback-btn');
+    feedbackButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            feedbackButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            if (btn.classList.contains('yes-btn')) {
+                alert('소중한 의견 감사합니다! 더욱 정확한 분석을 위해 노력하겠습니다.');
+            } else {
+                alert('의견 감사합니다. AI 모델을 더욱 개선하여 정확도를 높이겠습니다!');
+            }
+        });
+    });
 });

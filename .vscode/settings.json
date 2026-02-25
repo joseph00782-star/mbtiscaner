@@ -1,4 +1,4 @@
 {
   "IDX.agenticWorkspace": true,
-  "gemini-cli.debug.logging.enabled": true
+  "gemini-cli.debug.logging.enabled": false
 }
