@@ -170,29 +170,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
             mbtiReasoning.textContent = `"${mainFeature}이(가) 가장 돋보입니다. 전체적으로 ${result.mbti}의 특징과 90% 이상 일치하는 관상입니다."`;
 
+            // 게이지바 업데이트 함수 (높은 쪽에서 게이지가 나오도록 설정)
+            function updateProgressBar(progressId, scoreLeft, scoreRight) {
+                const progress = document.getElementById(progressId);
+                if (scoreLeft >= 50) {
+                    // 왼쪽(E, N, T, P)이 높을 때: 왼쪽에서 오른쪽으로
+                    progress.style.width = scoreLeft + '%';
+                    progress.style.left = '0';
+                    progress.style.right = 'auto';
+                } else {
+                    // 오른쪽(I, S, F, J)이 높을 때: 오른쪽에서 왼쪽으로
+                    progress.style.width = scoreRight + '%';
+                    progress.style.left = 'auto';
+                    progress.style.right = '0';
+                }
+            }
+
             // 모델별 진행바 및 텍스트 업데이트
             // 1. E vs I
             document.getElementById('e-score').textContent = result.scores.E + '%';
             document.getElementById('i-score').textContent = result.scores.I + '%';
-            document.getElementById('ei-progress').style.width = result.scores.E + '%'; // E 기준
+            updateProgressBar('ei-progress', result.scores.E, result.scores.I);
             document.getElementById('ei-desc').textContent = analysisTexts.ei;
 
-            // 2. N vs S (N 기준, 좌측)
+            // 2. N vs S
             document.getElementById('n-score').textContent = result.scores.N + '%';
             document.getElementById('s-score').textContent = result.scores.S + '%';
-            document.getElementById('ns-progress').style.width = result.scores.N + '%';
+            updateProgressBar('ns-progress', result.scores.N, result.scores.S);
             document.getElementById('ns-desc').textContent = analysisTexts.ns;
 
-            // 3. T vs F (T 기준, 좌측)
+            // 3. T vs F
             document.getElementById('t-score').textContent = result.scores.T + '%';
             document.getElementById('f-score').textContent = result.scores.F + '%';
-            document.getElementById('tf-progress').style.width = result.scores.T + '%';
+            updateProgressBar('tf-progress', result.scores.T, result.scores.F);
             document.getElementById('tf-desc').textContent = analysisTexts.tf;
 
-            // 4. P vs J (P 기준, 좌측)
+            // 4. P vs J
             document.getElementById('p-score').textContent = result.scores.P + '%';
             document.getElementById('j-score').textContent = result.scores.J + '%';
-            document.getElementById('pj-progress').style.width = result.scores.P + '%';
+            updateProgressBar('pj-progress', result.scores.P, result.scores.J);
             document.getElementById('pj-desc').textContent = analysisTexts.pj;
 
             resultSection.style.display = 'block';
