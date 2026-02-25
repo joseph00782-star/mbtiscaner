@@ -86,16 +86,37 @@
             <h3>친구와의 관상 궁합</h3>
             <p>두 사람의 얼굴 사진으로 성격 조화 점수를 알아보세요!</p>
              <div class="chemistry-upload">
-                <div class="upload-box">
+                <div class="upload-box" id="my-upload-box">
                     <p>본인 사진</p>
+                    <div class="chem-preview-container">
+                        <img id="my-chem-preview" src="#" alt="본인 사진 미리보기" style="display: none;">
+                        <span class="upload-icon">+</span>
+                    </div>
                     <input type="file" id="my-image-upload" accept="image/*">
                 </div>
-                <div class="upload-box">
+                <div class="upload-box" id="friend-upload-box">
                     <p>친구 사진</p>
+                    <div class="chem-preview-container">
+                        <img id="friend-chem-preview" src="#" alt="친구 사진 미리보기" style="display: none;">
+                        <span class="upload-icon">+</span>
+                    </div>
                     <input type="file" id="friend-image-upload" accept="image/*">
                 </div>
             </div>
-            <button class="chemistry-button">궁합 분석하기</button>
+            <button class="chemistry-button" id="chemistry-analyze-btn" disabled>궁합 분석하기</button>
+
+            <div id="chemistry-result" class="chemistry-result" style="display: none;">
+                <div class="chem-result-card">
+                    <div class="chem-score-circle">
+                        <span id="chem-score">0</span>
+                        <small>점</small>
+                    </div>
+                    <div class="chem-info">
+                        <p class="chem-mbtis"><span id="my-mbti">????</span> & <span id="friend-mbti">????</span></p>
+                        <p id="chem-desc" class="chem-desc">관상 분석 중...</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
