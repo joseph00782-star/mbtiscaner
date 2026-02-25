@@ -240,7 +240,7 @@ input[type="file"] {
     position: absolute;
     top: 0;
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background-color: var(--primary-color);
     transition: width 0.5s ease-out, left 0.5s ease-out, right 0.5s ease-out;
 }
 
