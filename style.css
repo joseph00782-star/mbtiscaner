@@ -371,7 +371,7 @@ input[type="file"] {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-color: var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
