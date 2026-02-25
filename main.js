@@ -310,13 +310,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---------------------------------------------------------
-    // 4. 기타 인터랙션
+    // 4. 기타 인터랙션 (피드백 버튼 등)
     // ---------------------------------------------------------
-    const shareButton = document.querySelector('.share-button');
-    shareButton.addEventListener('click', () => {
-        alert('인스타그램 스토리 공유 기능은 곧 업데이트될 예정입니다!');
-    });
-
     const feedbackButtons = document.querySelectorAll('.feedback-btn');
     feedbackButtons.forEach(btn => {
         btn.addEventListener('click', () => {
