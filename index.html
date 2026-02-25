@@ -28,50 +28,67 @@
         </section>
 
         <section id="result-section" class="result-section" style="display: none;">
-            <h3>나의 관상 MBTI는?</h3>
+            <h3>관상 분석 결과</h3>
             <div class="result-card">
-                <p class="mbti-result">ENFP</p>
-                <p class="mbti-description">재기발랄한 활동가</p>
+                <p class="mbti-result">ESTP</p>
+                <p class="mbti-description">수완 좋은 사업가형</p>
+                <p class="mbti-reasoning" style="font-size: 1rem; color: #666; margin-top: 10px;">
+                    "날카로운 눈매와 자신감 넘치는 표정이 돋보입니다."
+                </p>
             </div>
+            
             <div class="report-section">
-                <h4>내 얼굴의 지표별 해석</h4>
-                <div class="report-item">
-                    <div class="report-title">
-                        <span>E (외향)</span>
-                        <span>I (내향)</span>
+                <h4>부위별 정밀 분석 리포트</h4>
+                
+                <div class="model-result">
+                    <p class="model-title">모델 1: 에너지 방향 (E vs I)</p>
+                    <div class="model-bar-container">
+                        <div class="model-label left">E (외향) <span id="e-score">0%</span></div>
+                        <div class="progress-bar">
+                            <div class="progress" id="ei-progress" style="width: 50%;"></div>
+                        </div>
+                        <div class="model-label right">I (내향) <span id="i-score">0%</span></div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 70%;"></div>
-                    </div>
+                    <p class="model-desc" id="ei-desc">분석 중...</p>
                 </div>
-                 <div class="report-item">
-                    <div class="report-title">
-                        <span>N (직관)</span>
-                        <span>S (감각)</span>
+
+                <div class="model-result">
+                    <p class="model-title">모델 2: 인식 방식 (N vs S)</p>
+                    <div class="model-bar-container">
+                        <div class="model-label left">N (직관) <span id="n-score">0%</span></div>
+                        <div class="progress-bar">
+                            <div class="progress" id="ns-progress" style="width: 50%;"></div>
+                        </div>
+                        <div class="model-label right">S (감각) <span id="s-score">0%</span></div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 60%;"></div>
-                    </div>
+                    <p class="model-desc" id="ns-desc">분석 중...</p>
                 </div>
-                 <div class="report-item">
-                    <div class="report-title">
-                        <span>T (사고)</span>
-                        <span>F (감정)</span>
+
+                <div class="model-result">
+                    <p class="model-title">모델 3: 판단 기준 (T vs F)</p>
+                    <div class="model-bar-container">
+                        <div class="model-label left">T (사고) <span id="t-score">0%</span></div>
+                        <div class="progress-bar">
+                            <div class="progress" id="tf-progress" style="width: 50%;"></div>
+                        </div>
+                        <div class="model-label right">F (감정) <span id="f-score">0%</span></div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 40%;"></div>
-                    </div>
+                    <p class="model-desc" id="tf-desc">분석 중...</p>
                 </div>
-                 <div class="report-item">
-                    <div class="report-title">
-                        <span>P (인식)</span>
-                        <span>J (판단)</span>
+
+                <div class="model-result">
+                    <p class="model-title">모델 4: 생활 양식 (P vs J)</p>
+                    <div class="model-bar-container">
+                        <div class="model-label left">P (인식) <span id="p-score">0%</span></div>
+                        <div class="progress-bar">
+                            <div class="progress" id="pj-progress" style="width: 50%;"></div>
+                        </div>
+                        <div class="model-label right">J (판단) <span id="j-score">0%</span></div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 80%;"></div>
-                    </div>
+                    <p class="model-desc" id="pj-desc">분석 중...</p>
                 </div>
             </div>
+
             <div class="feedback-section">
                 <p>실제 자신의 MBTI와 비슷하나요?</p>
                 <div class="feedback-buttons">
