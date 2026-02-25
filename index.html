@@ -1,91 +1,91 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI관상테스트 - AI 관상으로 알아보는 나의 MBTI</title>
+    <meta name="description" content="AI 관상 분석을 통해 나의 MBTI 성향을 재미로 알아보는 MBTI관상테스트입니다. 사진 한 장으로 성격 유형을 예측해보세요.">
+    <meta name="keywords" content="MBTI, 관상, 인공지능, 얼굴분석, 성격테스트, 심리테스트, 재미">
+    <title>MBTI관상테스트 - AI 얼굴 분석 엔터테인먼트</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1><a href="/">MBTI관상테스트</a></h1>
+        <nav class="nav-container">
+            <h1><a href="/">MBTI관상테스트</a></h1>
+            <ul class="nav-menu">
+                <li><a href="#analyze-section">테스트하기</a></li>
+                <li><a href="#about-info">서비스 소개</a></li>
+                <li><a href="#privacy-policy">개인정보보호</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h2>AI가 내 얼굴에서 MBTI를 찾아준다고?</h2>
-            <p>사진 한 장으로 관상 속에 숨겨진 진짜 내 성향을 확인해보세요!</p>
+        <!-- 히로 섹션 -->
+        <section class="hero" id="analyze-section">
+            <h2>AI가 분석하는 나의 'MBTI 관상'</h2>
+            <p>당신의 얼굴에는 어떤 성격이 담겨 있을까요?<br>첨단 AI 기술을 통해 관상 속 MBTI 지표를 재미로 확인해보세요!</p>
+            
             <div class="upload-section">
                 <div class="image-placeholder">
                     <img id="image-preview" src="#" alt="업로드된 이미지 미리보기" style="display: none;">
-                    <p id="placeholder-text">여기에 사진을 올려주세요</p>
+                    <p id="placeholder-text">여기에 분석할 사진을 올려주세요</p>
                 </div>
                 <label for="image-upload" class="upload-button">사진 선택하기</label>
                 <input type="file" id="image-upload" accept="image/*">
                 <button id="analyze-button" class="analyze-button" disabled>분석 시작하기</button>
             </div>
+            <p class="disclaimer-text">* 업로드된 사진은 분석 즉시 파기되며 서버에 저장되지 않습니다.</p>
         </section>
 
+        <!-- 결과 섹션 -->
         <section id="result-section" class="result-section" style="display: none;">
             <h3>관상 분석 결과</h3>
             <div class="result-card">
                 <p class="mbti-result">ESTP</p>
                 <p class="mbti-description">수완 좋은 사업가형</p>
-                <p class="mbti-reasoning" style="font-size: 1rem; color: #666; margin-top: 10px;">
-                    "날카로운 눈매와 자신감 넘치는 표정이 돋보입니다."
-                </p>
+                <p class="mbti-reasoning" style="font-size: 1rem; color: #666; margin-top: 10px;"></p>
             </div>
             
             <div class="report-section">
                 <h4>부위별 정밀 분석 리포트</h4>
-                
-                <div class="model-result">
-                    <p class="model-title">모델 1: 에너지 방향 (E vs I)</p>
+                <!-- 모델 1-4 결과들 (JS에서 업데이트) -->
+                <div class="model-result" id="model-ei-area">
+                    <p class="model-title">에너지 방향 (E vs I)</p>
                     <div class="model-bar-container">
-                        <div class="model-label left">E (외향) <span id="e-score">0%</span></div>
-                        <div class="progress-bar">
-                            <div class="progress" id="ei-progress" style="width: 50%;"></div>
-                        </div>
-                        <div class="model-label right">I (내향) <span id="i-score">0%</span></div>
+                        <div class="model-label left">E <span id="e-score">0%</span></div>
+                        <div class="progress-bar"><div class="progress" id="ei-progress"></div></div>
+                        <div class="model-label right">I <span id="i-score">0%</span></div>
                     </div>
-                    <p class="model-desc" id="ei-desc">분석 중...</p>
+                    <p class="model-desc" id="ei-desc"></p>
                 </div>
-
+                <!-- ... 나머지 모델 구조 유지 ... -->
                 <div class="model-result">
-                    <p class="model-title">모델 2: 인식 방식 (N vs S)</p>
+                    <p class="model-title">인식 방식 (N vs S)</p>
                     <div class="model-bar-container">
-                        <div class="model-label left">N (직관) <span id="n-score">0%</span></div>
-                        <div class="progress-bar">
-                            <div class="progress" id="ns-progress" style="width: 50%;"></div>
-                        </div>
-                        <div class="model-label right">S (감각) <span id="s-score">0%</span></div>
+                        <div class="model-label left">N <span id="n-score">0%</span></div>
+                        <div class="progress-bar"><div class="progress" id="ns-progress"></div></div>
+                        <div class="model-label right">S <span id="s-score">0%</span></div>
                     </div>
-                    <p class="model-desc" id="ns-desc">분석 중...</p>
+                    <p class="model-desc" id="ns-desc"></p>
                 </div>
-
                 <div class="model-result">
-                    <p class="model-title">모델 3: 판단 기준 (T vs F)</p>
+                    <p class="model-title">판단 기준 (T vs F)</p>
                     <div class="model-bar-container">
-                        <div class="model-label left">T (사고) <span id="t-score">0%</span></div>
-                        <div class="progress-bar">
-                            <div class="progress" id="tf-progress" style="width: 50%;"></div>
-                        </div>
-                        <div class="model-label right">F (감정) <span id="f-score">0%</span></div>
+                        <div class="model-label left">T <span id="t-score">0%</span></div>
+                        <div class="progress-bar"><div class="progress" id="tf-progress"></div></div>
+                        <div class="model-label right">F <span id="f-score">0%</span></div>
                     </div>
-                    <p class="model-desc" id="tf-desc">분석 중...</p>
+                    <p class="model-desc" id="tf-desc"></p>
                 </div>
-
                 <div class="model-result">
-                    <p class="model-title">모델 4: 생활 양식 (P vs J)</p>
+                    <p class="model-title">생활 양식 (P vs J)</p>
                     <div class="model-bar-container">
-                        <div class="model-label left">P (인식) <span id="p-score">0%</span></div>
-                        <div class="progress-bar">
-                            <div class="progress" id="pj-progress" style="width: 50%;"></div>
-                        </div>
-                        <div class="model-label right">J (판단) <span id="j-score">0%</span></div>
+                        <div class="model-label left">P <span id="p-score">0%</span></div>
+                        <div class="progress-bar"><div class="progress" id="pj-progress"></div></div>
+                        <div class="model-label right">J <span id="j-score">0%</span></div>
                     </div>
-                    <p class="model-desc" id="pj-desc">분석 중...</p>
+                    <p class="model-desc" id="pj-desc"></p>
                 </div>
             </div>
 
@@ -98,22 +98,23 @@
             </div>
         </section>
 
+        <!-- 친구 궁합 섹션 -->
         <section class="chemistry-section">
             <h3>친구와의 관상 궁합</h3>
-            <p>두 사람의 얼굴 사진으로 성격 조화 점수를 알아보세요!</p>
+            <p>두 사람의 조화는 어떨까요? 얼굴 사진으로 궁합 점수를 확인하세요!</p>
              <div class="chemistry-upload">
                 <div class="upload-box" id="my-upload-box">
-                    <p>본인 사진</p>
+                    <p>본인</p>
                     <div class="chem-preview-container">
-                        <img id="my-chem-preview" src="#" alt="본인 사진 미리보기" style="display: none;">
+                        <img id="my-chem-preview" src="#" alt="본인 사진" style="display: none;">
                         <span class="upload-icon">+</span>
                     </div>
                     <input type="file" id="my-image-upload" accept="image/*">
                 </div>
                 <div class="upload-box" id="friend-upload-box">
-                    <p>친구 사진</p>
+                    <p>친구</p>
                     <div class="chem-preview-container">
-                        <img id="friend-chem-preview" src="#" alt="친구 사진 미리보기" style="display: none;">
+                        <img id="friend-chem-preview" src="#" alt="친구 사진" style="display: none;">
                         <span class="upload-icon">+</span>
                     </div>
                     <input type="file" id="friend-image-upload" accept="image/*">
@@ -129,15 +130,47 @@
                     </div>
                     <div class="chem-info">
                         <p class="chem-mbtis"><span id="my-mbti">????</span> & <span id="friend-mbti">????</span></p>
-                        <p id="chem-desc" class="chem-desc">관상 분석 중...</p>
+                        <p id="chem-desc" class="chem-desc"></p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- 애드센스를 위한 가치 정보 섹션 (텍스트 보강) -->
+        <section class="info-content" id="about-info">
+            <div class="info-card">
+                <h3>MBTI관상테스트란 무엇인가요?</h3>
+                <p>본 서비스는 인공지능 알고리즘을 활용하여 사용자의 안면 특징(눈매, 입꼬리, 안면 윤곽 등)을 분석하고, 이를 대중적으로 알려진 MBTI 성격 유형의 외형적 특징과 매칭해보는 <strong>엔터테인먼트형 도구</strong>입니다.</p>
+                <p>과학적 근거보다는 관상학적 통계와 재미 요소를 결합하여 제작되었으며, 분석 결과는 사용자의 실제 성격과 다를 수 있습니다. 일상 속 소소한 재미를 위해 즐겨주시기 바랍니다.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>주요 분석 지표 안내</h3>
+                <ul>
+                    <li><strong>E(외향) vs I(내향):</strong> 활기찬 에너지와 표현력 있는 근육의 움직임을 분석합니다.</li>
+                    <li><strong>N(직관) vs S(감각):</strong> 시선의 깊이와 전반적인 인상의 아우라를 탐색합니다.</li>
+                    <li><strong>T(사고) vs F(감정):</strong> 얼굴 선의 날카로움과 부드러운 인상의 정도를 확인합니다.</li>
+                    <li><strong>P(인식) vs J(판단):</strong> 표정의 유연함과 정돈된 정도를 비교합니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 법적 고지 및 개인정보처리방침 섹션 -->
+        <section class="policy-section" id="privacy-policy">
+            <h3>개인정보처리방침 및 면책조항</h3>
+            <div class="policy-content">
+                <p><strong>1. 오로지 재미를 위한 서비스:</strong> 본 사이트에서 제공하는 모든 분석 결과는 오로지 사용자의 재미와 흥미를 위해 제작되었습니다. 본 결과는 어떠한 의학적, 심리학적 진단도 대신할 수 없으며 과학적 근거가 부족할 수 있음을 명시합니다.</p>
+                <p><strong>2. 사진 데이터 보호:</strong> 사용자가 업로드한 이미지는 분석을 위한 일회성 데이터로만 사용됩니다. 분석이 완료되는 즉시 브라우저에서 파기되며, 어떠한 경우에도 서버에 저장하거나 외부로 전송하지 않습니다.</p>
+                <p><strong>3. 쿠키 사용:</strong> 본 사이트는 서비스 개선 및 분석을 위해 브라우저 쿠키를 사용할 수 있습니다.</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 MBTI관상테스트. All Rights Reserved.</p>
+        <div class="footer-container">
+            <p>&copy; 2026 MBTI관상테스트. All Rights Reserved. | <a href="#privacy-policy">개인정보처리방침</a></p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #999;">본 서비스는 엔터테인먼트 목적으로만 제공됩니다.</p>
+        </div>
     </footer>
 
     <script src="main.js"></script>
