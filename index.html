@@ -1,14 +1,101 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceType - AI 관상으로 알아보는 나의 MBTI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <header>
+        <h1><a href="/">FaceType</a></h1>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>AI가 내 얼굴에서 MBTI를 찾아준다고?</h2>
+            <p>사진 한 장으로 관상 속에 숨겨진 진짜 내 성향을 확인해보세요!</p>
+            <div class="upload-section">
+                <div class="image-placeholder">
+                    <img id="image-preview" src="#" alt="업로드된 이미지 미리보기" style="display: none;">
+                    <p id="placeholder-text">여기에 사진을 올려주세요</p>
+                </div>
+                <label for="image-upload" class="upload-button">사진 선택하기</label>
+                <input type="file" id="image-upload" accept="image/*">
+                <button id="analyze-button" class="analyze-button" disabled>분석 시작하기</button>
+            </div>
+        </section>
+
+        <section id="result-section" class="result-section" style="display: none;">
+            <h3>나의 관상 MBTI는?</h3>
+            <div class="result-card">
+                <p class="mbti-result">ENFP</p>
+                <p class="mbti-description">재기발랄한 활동가</p>
+            </div>
+            <div class="report-section">
+                <h4>내 얼굴의 지표별 해석</h4>
+                <div class="report-item">
+                    <div class="report-title">
+                        <span>E (외향)</span>
+                        <span>I (내향)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+                 <div class="report-item">
+                    <div class="report-title">
+                        <span>N (직관)</span>
+                        <span>S (감각)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;"></div>
+                    </div>
+                </div>
+                 <div class="report-item">
+                    <div class="report-title">
+                        <span>T (사고)</span>
+                        <span>F (감정)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%;"></div>
+                    </div>
+                </div>
+                 <div class="report-item">
+                    <div class="report-title">
+                        <span>P (인식)</span>
+                        <span>J (판단)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="share-button">결과 공유하기</button>
+        </section>
+
+        <section class="chemistry-section">
+            <h3>친구와의 관상 궁합</h3>
+            <p>두 사람의 얼굴 사진으로 성격 조화 점수를 알아보세요!</p>
+             <div class="chemistry-upload">
+                <div class="upload-box">
+                    <p>본인 사진</p>
+                    <input type="file" id="my-image-upload" accept="image/*">
+                </div>
+                <div class="upload-box">
+                    <p>친구 사진</p>
+                    <input type="file" id="friend-image-upload" accept="image/*">
+                </div>
+            </div>
+            <button class="chemistry-button">궁합 분석하기</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FaceType. All Rights Reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
