@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // 요소 선택
@@ -36,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. 이미지 분석 로직 (모바일 안정성 강화)
     // ---------------------------------------------------------
     
-    // 파일 버퍼를 읽어오는 호환성 높은 함수
     function getFileBuffer(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -46,20 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 이미지를 기반으로 고정된 난수 생성
     async function getImageHash(file) {
         try {
-            // 최신 브라우저용 Crypto API 시도
             if (window.crypto && window.crypto.subtle) {
                 const buffer = await getFileBuffer(file);
                 const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
                 return Array.from(new Uint8Array(hashBuffer));
             }
         } catch (e) {
-            console.warn("Crypto API 실패, 폴백 로직 사용:", e);
+            console.warn("Crypto API 실패, 폴백 사용");
         }
-        
-        // 폴백: Crypto API가 없거나 실패할 경우 파일 정보를 이용한 의사 해시 생성
         const fallback = [];
         let seed = file.size + file.name.length;
         for (let i = 0; i < 32; i++) {
@@ -118,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagePreview.style.display = 'block';
                 placeholderText.style.display = 'none';
                 analyzeButton.disabled = false;
-                analyzeButton.textContent = '분석 시작하기'; // 상태 초기화
+                analyzeButton.textContent = '분석 시작하기';
             };
             reader.readAsDataURL(file);
         }
@@ -150,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (maxScoreTrait === 'P') mainFeature = "자유로운 아우라";
                 else mainFeature = "단정한 인상";
 
-                mbtiReasoning.textContent = `"${mainFeature}이(가) 돋보입니다. ${result.mbti} 유형의 전형적인 관상과 일치합니다."`;
+                mbtiReasoning.textContent = `"${mainFeature}이(가) 가장 돋보입니다. ${result.mbti} 유형의 전형적인 관상과 일치합니다."`;
 
                 function updateProgressBar(progressId, scoreLeft, scoreRight) {
                     const progress = document.getElementById(progressId);
@@ -165,22 +161,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                // UI 업데이트
                 document.getElementById('e-score').textContent = result.scores.E + '%';
                 document.getElementById('i-score').textContent = result.scores.I + '%';
                 updateProgressBar('ei-progress', result.scores.E, result.scores.I);
-                document.getElementById('ei-desc').textContent = texts.ei; // Fixed variable name to result or texts
-
-                // (나머지 지표 업데이트 생략 - 실제 코드에서는 전체 포함)
-                // 아래는 생략된 나머지 업데이트 로직을 포함한 전체 코드입니다.
                 document.getElementById('ei-desc').textContent = analysisTexts.ei;
+
                 document.getElementById('n-score').textContent = result.scores.N + '%';
                 document.getElementById('s-score').textContent = result.scores.S + '%';
                 updateProgressBar('ns-progress', result.scores.N, result.scores.S);
                 document.getElementById('ns-desc').textContent = analysisTexts.ns;
+
                 document.getElementById('t-score').textContent = result.scores.T + '%';
                 document.getElementById('f-score').textContent = result.scores.F + '%';
                 updateProgressBar('tf-progress', result.scores.T, result.scores.F);
                 document.getElementById('tf-desc').textContent = analysisTexts.tf;
+
                 document.getElementById('p-score').textContent = result.scores.P + '%';
                 document.getElementById('j-score').textContent = result.scores.J + '%';
                 updateProgressBar('pj-progress', result.scores.P, result.scores.J);
@@ -189,12 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultSection.style.display = 'block';
                 resultSection.scrollIntoView({ behavior: 'smooth' });
                 analyzeButton.textContent = '분석 완료!';
-            }, 1500);
+            }, 1000);
         } catch (error) {
             console.error(error);
             alert('분석 도중 오류가 발생했습니다. 다시 시도해 주세요.');
             analyzeButton.disabled = false;
-            analyzeButton.textContent = '다시 시도하기';
+            analyzeButton.textContent = '분석 시작하기';
         }
     });
 
@@ -239,11 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 chemistryResult.style.display = 'block';
                 chemistryResult.scrollIntoView({ behavior: 'smooth' });
                 chemistryAnalyzeBtn.textContent = '분석 완료!';
-            }, 1500);
+            }, 1000);
         } catch (error) {
             alert('궁합 분석 중 오류가 발생했습니다.');
             chemistryAnalyzeBtn.disabled = false;
-            chemistryAnalyzeBtn.textContent = '다시 시도하기';
+            chemistryAnalyzeBtn.textContent = '분석 시작하기';
         }
     });
 
@@ -276,9 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return "서로를 위한 이해와 배려가 조금 더 필요합니다.";
     }
 
-    // ---------------------------------------------------------
-    // 4. 기타 인터랙션
-    // ---------------------------------------------------------
     const feedbackButtons = document.querySelectorAll('.feedback-btn');
     feedbackButtons.forEach(btn => {
         btn.addEventListener('click', () => {
