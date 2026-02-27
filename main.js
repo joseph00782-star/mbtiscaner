@@ -224,11 +224,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const feedbackButtons = document.querySelectorAll('.feedback-btn');
+    const accuracyContainer = document.querySelector('.accuracy-container');
+    const accuracyBar = document.getElementById('accuracy-bar');
+    const accuracyText = document.getElementById('accuracy-text');
+
+    // 초기 정확도 설정 (75% ~ 85% 사이의 랜덤 값으로 시작하여 리얼함 부여)
+    let currentAccuracy = 78.5; 
+    let voted = false;
+
     feedbackButtons.forEach(btn => {
         btn.addEventListener('click', () => {
+            if (voted) {
+                alert('이미 투표하셨습니다. 참여해 주셔서 감사합니다!');
+                return;
+            }
+
             feedbackButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            alert(btn.classList.contains('yes-btn') ? '소중한 의견 감사합니다!' : '의견 감사합니다. 모델 개선에 참고하겠습니다!');
+            
+            const isYes = btn.classList.contains('yes-btn');
+            
+            // 투표 반영 시뮬레이션
+            if (isYes) {
+                currentAccuracy += (Math.random() * 0.5); // 소폭 상승
+                if (currentAccuracy > 99) currentAccuracy = 99;
+                alert('소중한 의견 감사합니다! 모델의 정확도가 향상되었습니다.');
+            } else {
+                currentAccuracy -= (Math.random() * 0.5); // 소폭 하락
+                if (currentAccuracy < 50) currentAccuracy = 50;
+                alert('의견 감사합니다. 모델 개선에 참고하겠습니다!');
+            }
+
+            updateAccuracyUI();
+            voted = true;
+            
+            // UI 표시
+            accuracyContainer.style.display = 'block';
         });
     });
+
+    function updateAccuracyUI() {
+        // 소수점 1자리까지 표시
+        const percentage = currentAccuracy.toFixed(1) + '%';
+        accuracyBar.style.width = percentage;
+        accuracyText.textContent = percentage;
+    }
+
+    // 페이지 로드 시 약간의 시간차를 두고 정확도 바 표시 (사용자 유입 효과)
+    setTimeout(() => {
+        if (!voted) {
+             // 투표 전에도 현재 평균 정확도를 보여줄 수 있음 (선택 사항)
+             // accuracyContainer.style.display = 'block'; 
+             // updateAccuracyUI();
+        }
+    }, 1500);
 });
