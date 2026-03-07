@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
-    // 0. Firebase 초기화 (실시간 정답률용)
+    // 0. Firebase 초기화
     // ---------------------------------------------------------
-    // TODO: 사용자의 Firebase 설정으로 교체하세요.
     const firebaseConfig = {
         apiKey: "YOUR_API_KEY",
         authDomain: "YOUR_AUTH_DOMAIN",
@@ -157,16 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
             resultSection.style.display = 'block';
             window.scrollTo({ top: resultSection.offsetTop - 100, behavior: 'smooth' });
             analyzeButton.textContent = '분석 완료!';
-            
-            // 결과가 나올 때 실시간 정답률 표시
-            if (database) {
-                accuracyContainer.style.display = 'block';
-                syncAccuracy();
-            } else {
-                // Firebase가 설정되지 않은 경우 시뮬레이션 모드
-                accuracyContainer.style.display = 'block';
-                updateAccuracyUI(78.5, 100); 
-            }
         }, 1000);
     });
 
@@ -214,52 +203,4 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateCompatibility(m1, m2) {
         return Math.floor(Math.random() * 50) + 50;
     }
-
-    // ---------------------------------------------------------
-    // 4. 실시간 정답률 (Firebase 연동)
-    // ---------------------------------------------------------
-    const feedbackButtons = document.querySelectorAll('.feedback-btn');
-    const accuracyContainer = document.querySelector('.accuracy-container');
-    const accuracyBar = document.getElementById('accuracy-bar');
-    const accuracyText = document.getElementById('accuracy-text');
-
-    let voted = false;
-
-    function syncAccuracy() {
-        if (!database) return;
-        database.ref('stats/accuracy').on('value', (snapshot) => {
-            const data = snapshot.val() || { yes: 80, total: 100 };
-            const percentage = (data.yes / data.total) * 100;
-            updateAccuracyUI(percentage);
-        });
-    }
-
-    function updateAccuracyUI(percentage) {
-        const pStr = percentage.toFixed(1) + '%';
-        accuracyBar.style.width = pStr;
-        accuracyText.textContent = pStr;
-    }
-
-    feedbackButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (voted) return alert('이미 참여하셨습니다!');
-            
-            const isYes = btn.classList.contains('yes-btn');
-            voted = true;
-            feedbackButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            if (database) {
-                database.ref('stats/accuracy').transaction((current) => {
-                    if (!current) current = { yes: 80, total: 100 };
-                    current.total++;
-                    if (isYes) current.yes++;
-                    return current;
-                });
-            } else {
-                alert('Firebase가 설정되지 않아 로컬에서만 반영됩니다.');
-                updateAccuracyUI(isYes ? 80 : 77);
-            }
-        });
-    });
 });
