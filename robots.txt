@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://joseph00782-star.github.io/mbtiscaner/sitemap.xml
+Sitemap: https://mbtiscaner.pages.dev/sitemap.xml
